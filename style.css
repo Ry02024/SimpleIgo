@@ -7,9 +7,19 @@
 }
 
 .cell {
-    width: 20px;
+    width: 20px; /* または相対単位で */
     height: 20px;
-    background-color: #fff;
+    box-sizing: border-box;
+    border: 1px solid #000; /* 目のラインを表現 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stone {
+    width: 90%; /* 碁石を少し小さめにして中央に配置 */
+    height: 90%;
+    border-radius: 50%; /* 円形に */
 }
 
 .stone.black {
