@@ -19,3 +19,15 @@
 .stone.white {
     background-color: #fff;
 }
+/* スタイルシートの追加部分 */
+@media (max-width: 600px) {
+    #board {
+        width: 100%;
+        grid-template-columns: repeat(19, 1fr);
+    }
+
+    .cell {
+        width: 5vw; /* viewport widthを基準にサイズを調整 */
+        height: 5vw;
+    }
+}
