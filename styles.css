@@ -8,27 +8,39 @@ body {
 }
 
 #board {
+    position: relative;
+    width: 80vmin; /* 盤面のサイズ */
+    height: 80vmin;
     display: grid;
-    grid-template-columns: repeat(18, 1fr); /* 交差点の数だけ列を作る */
-    grid-template-rows: repeat(18, 1fr); /* 交差点の数だけ行を作る */
-    gap: 5px; /* セル間の隙間を作る */
-    padding: 5px; /* 盤の周囲に隙間を作る */
-    box-sizing: border-box; /* paddingを含めたサイズ計算にする */
-    border: 1px solid #000; /* 盤面の境界線 */
+    grid-template-columns: repeat(19, 1fr);
+    grid-template-rows: repeat(19, 1fr);
+    box-sizing: border-box;
 }
 
-/* 交差点を示す小さな点をここでスタイルする。必要に応じて */
-.dot {
-    width: 4px;
-    height: 4px;
-    background-color: #000;
-    border-radius: 50%;
+#board::after {
+    content: '';
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 0 1px black; /* 全体に1pxの黒線を引く */
+    pointer-events: none; /* 線にマウスイベントが影響しないようにする */
 }
 
-/* 固定された交差点に点を配置するためのスタイル */
-.dot1 { top: calc(33.333% - 2px); left: calc(33.333% - 2px); }
-.dot2 { top: calc(33.333% - 2px); left: calc(66.666% - 2px); }
-.dot3 { top: calc(66.666% - 2px); left: calc(33.333% - 2px); }
-.dot4 { top: calc(66.666% - 2px); left: calc(66.666% - 2px); }
-.dot5 { top: 50%; left: 50%; }
+.cell {
+    position: relative; /* 石を配置するための基準点 */
+}
+
+/* セルの境界線を描く */
+.cell::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%; /* セルの幅の90% */
+    height: 90%; /* セルの高さの90% */
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 1px black; /* 中央に1pxの黒線を引く */
+    pointer-events: none;
+}
