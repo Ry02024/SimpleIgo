@@ -1,29 +1,35 @@
 #board {
-    background-color: #daa520; /* 黄土色の背景 */
-    display: grid;
-    grid-template-columns: repeat(19, 1fr); /* 19列のグリッド */
-    position: relative; /* 子要素の位置の基準点とする */
-    width: 100%; /* 盤面の幅を調整 */
-    padding-bottom: 100%; /* アスペクト比を1:1に保つため */
+    background-color: #daa520; /* 盤面の色 */
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%; /* 盤面の幅（適宜調整してください） */
+    height: 100vw; /* 盤面の高さをビューポート幅と同じにして正方形に */
+    max-height: 100%; /* 高さの最大値をビューポート高さと同じに */
+    margin: auto;
 }
 
 .cell {
-    position: absolute; /* 石を絶対位置で配置 */
-    width: 2.6%; /* 石の幅、碁盤のサイズに合わせて調整 */
-    height: 2.6%; /* 石の高さ、碁盤のサイズに合わせて調整 */
+    flex: 0 0 calc(100% / 19); /* 19列のグリッド */
+    height: calc(100vw / 19); /* セルの高さをビューポート幅の19分の1に */
+    max-height: calc(100% / 19); /* 高さの最大値 */
+    position: relative; /* 石を絶対位置で配置するため */
 }
 
-/* 碁石のスタイル */
 .stone {
     position: absolute;
-    width: 100%; /* セルの大きさいっぱい */
-    height: 100%;
-    border-radius: 50%; /* 円形にする */
-    background-color: black; /* 黒石のデフォルト色 */
+    top: 50%;
+    left: 50%;
+    width: calc(100% / 19 - 4px); /* セルサイズから線の幅を差し引いたサイズ */
+    height: calc(100% / 19 - 4px); /* セルサイズから線の幅を差し引いたサイズ */
+    transform: translate(-50%, -50%); /* 中央に配置 */
+    border-radius: 50%; /* 円形に */
+    background-color: #000; /* 石の色（黒） */
 }
 
+/* 白石用の追加スタイル */
 .stone.white {
-    background-color: white; /* 白石の色 */
+    background-color: #fff; /* 石の色（白） */
 }
 
 /* 盤面の線を描画するためのスタイル */
