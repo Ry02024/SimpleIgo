@@ -1,0 +1,21 @@
+#board {
+    display: grid;
+    grid-template-columns: repeat(19, 1fr);
+    grid-gap: 2px;
+    width: 380px;
+    background-color: #dda;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+}
+
+.stone.black {
+    background-color: #000;
+}
+
+.stone.white {
+    background-color: #fff;
+}
