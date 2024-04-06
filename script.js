@@ -34,3 +34,14 @@ function handleInteraction(event) {
     const cell = event.target;
     placeStone(cell);
 }
+
+let currentStone = 'black'; // 最初の石を黒とする
+
+function placeStone(cell) {
+    if (cell.classList.contains('stone')) {
+        return; // 既に石がある場所には置けない
+    }
+    cell.classList.add('stone', currentStone);
+    // 次の石を切り替える
+    currentStone = (currentStone === 'black') ? 'white' : 'black';
+}
