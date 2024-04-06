@@ -1,33 +1,37 @@
 #board {
+    background-color: #daa520; /* 黄土色の背景 */
     display: grid;
-    grid-template-columns: repeat(19, 1fr);
-    grid-gap: 2px;
-    width: 380px;
-    background-color: #dda;
+    grid-template-columns: repeat(19, 1fr); /* 19列のグリッド */
+    gap: 0; /* セル間の隙間をなくす */
 }
 
 .cell {
-    width: 20px; /* または相対単位で */
-    height: 20px;
-    box-sizing: border-box;
-    border: 1px solid #000; /* 目のラインを表現 */
     display: flex;
+    justify-content: center; /* 中央に配置 */
     align-items: center;
-    justify-content: center;
+    border-right: 1px solid #000; /* 右側の線 */
+    border-bottom: 1px solid #000; /* 下側の線 */
+}
+
+/* 一番上の行のセルの上辺に線を追加 */
+.cell:nth-child(-n+19) {
+    border-top: 1px solid #000;
+}
+
+/* 一番左の列のセルの左辺に線を追加 */
+.cell:nth-child(19n+1) {
+    border-left: 1px solid #000;
 }
 
 .stone {
-    width: 90%; /* 碁石を少し小さめにして中央に配置 */
-    height: 90%;
-    border-radius: 50%; /* 円形に */
-}
-
-.stone.black {
-    background-color: #000;
+    width: 80%; /* 石のサイズ、必要に応じて調整 */
+    height: 80%;
+    border-radius: 50%; /* 円形にする */
+    background-color: black; /* 黒石のデフォルト色 */
 }
 
 .stone.white {
-    background-color: #fff;
+    background-color: white; /* 白石の色 */
 }
 /* スタイルシートの追加部分 */
 @media (max-width: 600px) {
