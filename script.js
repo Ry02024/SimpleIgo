@@ -39,9 +39,18 @@ let currentStone = 'black'; // 最初の石を黒とする
 
 function placeStone(cell) {
     if (cell.classList.contains('stone')) {
-        return; // 既に石がある場所には置けない
+        return; // 石が既にある場合は何もしない
     }
-    cell.classList.add('stone', currentStone);
-    // 次の石を切り替える
-    currentStone = (currentStone === 'black') ? 'white' : 'black';
+
+    // 石を作成
+    const stone = document.createElement('div');
+    stone.classList.add('stone');
+    if (currentPlayer === 'black') {
+        currentPlayer = 'white';
+    } else {
+        stone.classList.add('white');
+        currentPlayer = 'black';
+    }
+    
+    cell.appendChild(stone);
 }
