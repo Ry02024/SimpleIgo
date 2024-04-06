@@ -1,3 +1,9 @@
+/* 初期の背景色を設定するが、この例ではJavaScriptで上書きされる */
+body {
+  margin: 0; /* 余白をなくす */
+  height: 100vh; /* ビューポートの高さに合わせる */
+}
+
 .goban {
   display: grid;
   grid-template-columns: repeat(19, 1fr); /* 19列 */
