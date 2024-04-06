@@ -1,64 +1,24 @@
 #board {
-    background-color: #daa520; /* 盤面の色 */
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    width: 100%; /* 盤面の幅（適宜調整してください） */
-    height: 100vw; /* 盤面の高さをビューポート幅と同じにして正方形に */
-    max-height: 100%; /* 高さの最大値をビューポート高さと同じに */
-    margin: auto;
+    background-color: #daa520; /* 背景色は木目調のイメージ */
+    display: grid;
+    grid-template-columns: repeat(18, 1fr); /* 線が交差するところでセルが作られるので、19x19の盤面では18のfr単位 */
+    grid-template-rows: repeat(18, 1fr); /* 同上 */
+    gap: 5px; /* セルの間隔 */
+    padding: 5px; /* 盤の縁の幅 */
+    width: 50vmin; /* 盤面の幅（ビューポートに応じて） */
+    height: 50vmin; /* 盤面の高さ（ビューポートに応じて） */
+    box-sizing: border-box; /* paddingをwidthとheightに含める */
 }
 
-.cell {
-    flex: 0 0 calc(100% / 19); /* 19列のグリッド */
-    height: calc(100vw / 19); /* セルの高さをビューポート幅の19分の1に */
-    max-height: calc(100% / 19); /* 高さの最大値 */
-    position: relative; /* 石を絶対位置で配置するため */
-}
-
-.stone {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: calc(100% / 19 - 4px); /* セルサイズから線の幅を差し引いたサイズ */
-    height: calc(100% / 19 - 4px); /* セルサイズから線の幅を差し引いたサイズ */
-    transform: translate(-50%, -50%); /* 中央に配置 */
-    border-radius: 50%; /* 円形に */
-    background-color: #000; /* 石の色（黒） */
-}
-
-/* 白石用の追加スタイル */
-.stone.white {
-    background-color: #fff; /* 石の色（白） */
-}
-
-/* 盤面の線を描画するためのスタイル */
-.line {
-    position: absolute;
-    background-color: #000; /* 線の色 */
-}
-
-.line.vertical {
-    width: 1px; /* 縦線の幅 */
-    height: 100%; /* 盤面いっぱいの高さ */
-    left: 50%; /* 中央に配置 */
-}
-
-.line.horizontal {
-    width: 100%; /* 盤面いっぱいの幅 */
-    height: 1px; /* 横線の高さ */
-    top: 50%; /* 中央に配置 */
-}
-
-/* スタイルシートの追加部分 */
-@media (max-width: 600px) {
-    #board {
-        width: 100%;
-        grid-template-columns: repeat(19, 1fr);
-    }
-
-    .cell {
-        width: 5vw; /* viewport widthを基準にサイズを調整 */
-        height: 5vw;
-    }
+#board::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    grid-column: 1 / -1; /* 全列にわたる */
+    grid-row: 1 / -1; /* 全行にわたる */
+    background: linear-gradient(#000 1px, transparent 1px),
+                linear-gradient(90deg, #000 1px, transparent 1px),
+                linear-gradient(#000 1px, transparent 1px),
+                linear-gradient(90deg, #000 1px, transparent 1px);
+    background-size: calc(100% / 18) calc(100% / 18);
 }
