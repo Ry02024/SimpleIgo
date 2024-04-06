@@ -1,5 +1,26 @@
-/* 初期の背景色を設定するが、この例ではJavaScriptで上書きされる */
-body {
-  margin: 0; /* 余白をなくす */
-  height: 100vh; /* ビューポートの高さに合わせる */
+.goban {
+  display: grid;
+  grid-template-columns: repeat(19, 1fr); /* 19列 */
+  grid-gap: 1px; /* 交点間の隙間 */
+  width: 38rem; /* 碁盤の全体幅、適宜調整 */
+  background-color: #deb887; /* 碁盤の色 */
+}
+
+.point {
+  width: 100%; /* グリッド内での幅を最大に */
+  padding-top: 100%; /* 高さを幅と同じにして正方形にする */
+  background-color: #f5f5f5; /* 交点の色 */
+  position: relative;
+}
+
+/* 交点を表現するために:before疑似要素を使う */
+.point:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px; /* 交点のサイズ */
+  height: 2px; /* 交点のサイズ */
+  background-color: black; /* 交点の色 */
 }
