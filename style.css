@@ -2,30 +2,22 @@
     background-color: #daa520; /* 黄土色の背景 */
     display: grid;
     grid-template-columns: repeat(19, 1fr); /* 19列のグリッド */
-    gap: 0; /* セル間の隙間をなくす */
+    position: relative; /* 子要素の位置の基準点とする */
+    width: 100%; /* 盤面の幅を調整 */
+    padding-bottom: 100%; /* アスペクト比を1:1に保つため */
 }
 
 .cell {
-    display: flex;
-    justify-content: center; /* 中央に配置 */
-    align-items: center;
-    border-right: 1px solid #000; /* 右側の線 */
-    border-bottom: 1px solid #000; /* 下側の線 */
+    position: absolute; /* 石を絶対位置で配置 */
+    width: 2.6%; /* 石の幅、碁盤のサイズに合わせて調整 */
+    height: 2.6%; /* 石の高さ、碁盤のサイズに合わせて調整 */
 }
 
-/* 一番上の行のセルの上辺に線を追加 */
-.cell:nth-child(-n+19) {
-    border-top: 1px solid #000;
-}
-
-/* 一番左の列のセルの左辺に線を追加 */
-.cell:nth-child(19n+1) {
-    border-left: 1px solid #000;
-}
-
+/* 碁石のスタイル */
 .stone {
-    width: 80%; /* 石のサイズ、必要に応じて調整 */
-    height: 80%;
+    position: absolute;
+    width: 100%; /* セルの大きさいっぱい */
+    height: 100%;
     border-radius: 50%; /* 円形にする */
     background-color: black; /* 黒石のデフォルト色 */
 }
@@ -33,6 +25,25 @@
 .stone.white {
     background-color: white; /* 白石の色 */
 }
+
+/* 盤面の線を描画するためのスタイル */
+.line {
+    position: absolute;
+    background-color: #000; /* 線の色 */
+}
+
+.line.vertical {
+    width: 1px; /* 縦線の幅 */
+    height: 100%; /* 盤面いっぱいの高さ */
+    left: 50%; /* 中央に配置 */
+}
+
+.line.horizontal {
+    width: 100%; /* 盤面いっぱいの幅 */
+    height: 1px; /* 横線の高さ */
+    top: 50%; /* 中央に配置 */
+}
+
 /* スタイルシートの追加部分 */
 @media (max-width: 600px) {
     #board {
