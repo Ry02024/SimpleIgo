@@ -1,24 +1,34 @@
-#board {
-    background-color: #daa520; /* 背景色は木目調のイメージ */
-    display: grid;
-    grid-template-columns: repeat(18, 1fr); /* 線が交差するところでセルが作られるので、19x19の盤面では18のfr単位 */
-    grid-template-rows: repeat(18, 1fr); /* 同上 */
-    gap: 5px; /* セルの間隔 */
-    padding: 5px; /* 盤の縁の幅 */
-    width: 50vmin; /* 盤面の幅（ビューポートに応じて） */
-    height: 50vmin; /* 盤面の高さ（ビューポートに応じて） */
-    box-sizing: border-box; /* paddingをwidthとheightに含める */
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #daa520; /* 黄土色の背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#board::before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    grid-column: 1 / -1; /* 全列にわたる */
-    grid-row: 1 / -1; /* 全行にわたる */
-    background: linear-gradient(#000 1px, transparent 1px),
-                linear-gradient(90deg, #000 1px, transparent 1px),
-                linear-gradient(#000 1px, transparent 1px),
-                linear-gradient(90deg, #000 1px, transparent 1px);
-    background-size: calc(100% / 18) calc(100% / 18);
+#board {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr); /* 交差点の数だけ列を作る */
+    grid-template-rows: repeat(18, 1fr); /* 交差点の数だけ行を作る */
+    gap: 5px; /* セル間の隙間を作る */
+    padding: 5px; /* 盤の周囲に隙間を作る */
+    box-sizing: border-box; /* paddingを含めたサイズ計算にする */
+    border: 1px solid #000; /* 盤面の境界線 */
 }
+
+/* 交差点を示す小さな点をここでスタイルする。必要に応じて */
+.dot {
+    width: 4px;
+    height: 4px;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+}
+
+/* 固定された交差点に点を配置するためのスタイル */
+.dot1 { top: calc(33.333% - 2px); left: calc(33.333% - 2px); }
+.dot2 { top: calc(33.333% - 2px); left: calc(66.666% - 2px); }
+.dot3 { top: calc(66.666% - 2px); left: calc(33.333% - 2px); }
+.dot4 { top: calc(66.666% - 2px); left: calc(66.666% - 2px); }
+.dot5 { top: 50%; left: 50%; }
